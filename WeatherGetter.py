@@ -1,15 +1,15 @@
 import requests
-from fake_useragent import UserAgent
+#from fake_useragent import UserAgent
 import Logger
 from urllib import parse
-fake_header = {'user-agent': f'{UserAgent().random}'}
+fake_header = {'user-agent': 'User-Agent:Mozilla/5.0(Macintosh;IntelMacOSX10_7_0)AppleWebKit/535.11(KHTML,likeGecko)Chrome/17.0.963.56Safari/535.11'}
 logger_name = 'WeatherGetter'
 
-# 城市代码 City Code, replace it with the city you want
-cityId = "xxxxxxxxx"
+# 江门城市代码
+cityId = "101281101"
 
-# 和风天气的API Replace 'key' with your own key from HeFengWeather
-HeWeatherParams = {'location': f'CN{cityId}', 'key': 'xxxx'}
+# 和风天气的API
+HeWeatherParams = {'location': f'CN{cityId}', 'key': '39c53be87abf42688bb594d1dcf9637f'}
 
 
 def get_he_weather(url):
@@ -103,6 +103,7 @@ def get_sun_and_moon():
         'status':      sun_json['status'],         # 接口状态
         'sunrise':     today_date['sr'],           # 日升
         'sunset':      today_date['ss'],           # 日落
+        # FIXME 丢人!!月升月落写反啦!!
         'moonrise':    today_date['ms'],           # 月升, 不知为何在接口中这两个是换过来的
         'moonset':     today_date['mr'],           # 月落, 不知为何在接口中这两个是换过来的
     }
